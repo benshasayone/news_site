@@ -12,9 +12,6 @@
     <style>
         html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     </style>
-    {% block new %}
-    {% endblock %}
-
 </head>
 <body>
 
@@ -23,32 +20,19 @@
 {% endblock %}
 
 
-{% block side %}
-  {% include 'Sidebar.html' %}
-{% endblock %}
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:250px">
 
 
-
-<div id="main-content">
 {% block content%}
 
 {% endblock %}
 
-{% block extra_js %}
-{% endblock %}
-
-
-</div>
-
-
 {% block foot %}
+  {% include 'footer.html' %}
 {% endblock %}
 
 </div>
-
-
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
