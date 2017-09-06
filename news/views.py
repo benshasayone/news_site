@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.shortcuts import render, render_to_response
 
 # Create your views here.
@@ -18,10 +18,12 @@ class NewsListView(ListView):
 
     model = News
     template_name = 'news_list.html'
+    paginate_by = 4
+    context_object_name = 'news'
+    queryset = News.objects.all().order_by('-pub_date')
 
     def get_context_data(self, **kwargs):
         context = super(NewsListView, self).get_context_data(**kwargs)
-        context['news_list'] = News.objects.all().order_by('-pub_date')[:6]
         context['news_cat_list'] = NewsTypes.objects.all()
         return context
 
@@ -45,6 +47,7 @@ class NewsDetailView(DetailView):
         return context
 
 
+
 def search(request):
     return render(request, 's.html')
 
@@ -55,40 +58,57 @@ class NewsCatView(ListView):
     """
     model = News
     template_name = 'news_cat.html'
+    paginate_by = 2
+    context_object_name = 'news'
+
+    def get_queryset(self,**kwargs):
+        ntype = self.kwargs['newstype']
+        return News.objects.filter(news_type__type=ntype).order_by('-pub_date')
 
     def get_context_data(self, **kwargs):
         context = super(NewsCatView, self).get_context_data(**kwargs)
         ntype = self.kwargs['newstype']
-        context['news_cat'] = News.objects.filter(news_type__type=ntype)
         context['news_cat_list'] = NewsTypes.objects.all()
         context['type1'] =ntype
         return context
 
 
-def ajax_title_search(request):
 
-    if request.is_ajax():
-        q = request.GET.get('q')
-        if q is not None:
-            results = News.objects.filter(
-                Q( title__contains = q ) |
-                Q( content__contains = q ) ).order_by( '-pub_date' )
-            t = get_template('results.html')
-            html = t.render(context=({'results': results,}))
-            return HttpResponse(html)
 
 def search123(request):
     return render(request, 'news_list2.html')
 
 
-def ajax_title_search2(request):
 
-    if request.is_ajax():
-        q = request.GET.get('q')
-        w = request.GET.get('w')
-        if q is not None:
-            results = News.objects.filter(news_type__type = w ).filter( Q( title__contains = q ) | Q( content__contains = q )).order_by( '-pub_date' )
-            t = get_template('results.html')
-            html = t.render(context=({'results': results,}))
-            return HttpResponse(html)
+class NewsSearchView(ListView):
+    model = News
+    template_name = 'results.html'
+    context_object_name = 'results'
+
+    def get_queryset(self, **kwargs):
+        if self.request.is_ajax():
+            q = self.request.GET.get('q')
+            if q is not None:
+                return News.objects.filter(
+                    Q(title__contains=q) |
+                    Q(content__contains=q)).order_by('-pub_date')
+
+
+
+class NewsSearchCatView(ListView):
+    model = News
+    template_name = 'results.html'
+    context_object_name = 'results'
+
+    def get_queryset(self, **kwargs):
+        if self.request.is_ajax():
+            q = self.request.GET.get('q')
+            w = self.request.GET.get('w')
+            if q is not None:
+                return News.objects.filter(news_type__type = w ).filter(
+                    Q(title__contains=q) |
+                    Q(content__contains=q)).order_by('-pub_date')
+
+
+
 

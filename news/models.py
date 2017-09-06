@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from autoslug import AutoSlugField
 from django.db import models
+from django.urls import reverse
 
 
 class NewsTypes(models.Model):
@@ -35,6 +36,9 @@ class News(models.Model):
 
     class Meta:
         verbose_name_plural = "News"
+
+    def get_absolute_url(self):
+        return reverse('news:news-details', kwargs={'slug': self.slug,'newstype':self.news_type.type})
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
