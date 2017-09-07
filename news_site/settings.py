@@ -32,12 +32,25 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'news.apps.NewsConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'sendgrid',
+    'django_comments',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -78,6 +92,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
     }
 }
 
@@ -101,6 +127,17 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -121,3 +158,52 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = '/home'
+
+SITE_ID = 1
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'atleyvarghese'
+EMAIL_HOST_PASSWORD = '9388481936a'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+ACCOUNT_LOGOUT_REDIRECT_URL = '/home'
+
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[NewsCorner] "
+
+LOGIN_URL = '/accounts/login/'
+
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL=LOGIN_URL
+
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/accounts/login/'
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = False
+
+APPEND_SLASH = True
+
+ALLOWED_HOSTS = '*'
+
+
+
+    # Absolute path to the directory static files should be collected to.
+    # Don't put anything in this directory yourself; store your static files
+    # in apps' "static/" subdirectories and in STATICFILES_DIRS.
+    # Example: "/var/www/example.com/static/"
+STATIC_ROOT = ''
+
+    # URL prefix for static files.
+    # Example: "http://example.com/static/", "http://static.example.com/"
+
+    # Additional locations of static files
+
+
+
+
+

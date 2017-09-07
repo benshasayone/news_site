@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.contrib import admin
 
 # Register your models here.
-from news.models import NewsTypes, News
+from news.models import NewsTypes, News, NewsLetter
+
 
 class NewsAdmin(admin.ModelAdmin):
     pass
@@ -12,3 +13,4 @@ class NewsAdmin(admin.ModelAdmin):
 
 admin.site.register(News, NewsAdmin)
 admin.site.register(NewsTypes)
+admin.site.register(NewsLetter)
