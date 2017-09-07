@@ -42,3 +42,10 @@ class News(models.Model):
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
+
+
+class NewsLetter(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.email

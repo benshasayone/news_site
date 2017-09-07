@@ -38,27 +38,10 @@ $.ajax({
     <img src="{{ news.image.url }}" style="display: block;margin: auto;max-width: 100%;
     height: auto;padding-bottom: 2cm;"/>
 {% endif %}
-<div id="results">
-{% render_comment_list for news.news news.id %}
-</div>
-{% if user.is_authenticated %}
-    {% get_comment_form for object as form %}
-    <form action="{% comment_form_target %}" onsubmit="return false;" method="POST">
-    {% csrf_token %}
-    {{ form.comment }}
-    {{ form.honeypot }}
-    {{ form.content_type }}
-    {{ form.object_pk }}
-    {{ form.timestamp }}
-    {{ form.security_hash }}
-    <input type="hidden" name="next" value="{% url 'news:news-details' news.news_type.type news.slug %}" />
-    <input type="submit" value="Add comment" id="id_submit" />
-    </form>
-{% else %}
-    <p>Please <a href="/account/login/">log in</a> to leave a comment.</p>
-{% endif %}
+{% endblock %}
 
-</div>
+{% block comment %}
+  {% include 'list_comment.html' %}
 <div>
     <pre>
 

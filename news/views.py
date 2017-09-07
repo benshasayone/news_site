@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.mail import EmailMessage
 from django.db.models import Q
-from django.http import HttpResponse, request
-from django.shortcuts import render, render_to_response
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.shortcuts import render
 # Create your views here.
-from django.template import RequestContext, Context
-from django.template.loader import get_template
+from django.template.loader import render_to_string
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView
 
-from news.models import News, NewsTypes
+from news.models import News, NewsTypes, NewsLetter
 
 
 class NewsListView(ListView):
@@ -76,7 +76,10 @@ class NewsCatView(ListView):
 
 
 def search123(request):
-    return render(request, 'news_list2.html')
+    return render(request, 'load_comments.html')
+
+
+
 
 
 
@@ -110,5 +113,29 @@ class NewsSearchCatView(ListView):
                     Q(content__contains=q)).order_by('-pub_date')
 
 
+@receiver(post_save,sender=News)
+def send_user_data_when_created_by_admin(sender, instance, **kwargs):
+    try:
+        thread1 = send_mail()
+        thread1.start()
+    except:
+        #send_mail()
+        pass
 
 
+def send_mail():
+    obj = News.objects.last()
+
+    # title = obj.title
+    # content =obj.content
+    # author = obj.authors
+    #
+    #
+    # subject, to = 'Newsletter',  'atleyisaac@gmail.com'
+
+    html_content = render_to_string('newsletter.html', {'news': obj})  # ...
+
+    # create the email, and attach the HTML version as well.
+    message = EmailMessage(subject='Newsletter', body=html_content, to=list(NewsLetter.objects.all()))
+    message.content_subtype = 'html'
+    message.send()

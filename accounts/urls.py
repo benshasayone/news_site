@@ -1,10 +1,13 @@
 from allauth.account import views
 from django.conf.urls import url, include
 
+from accounts.views import editprofile
+
 urlpatterns = [
     url(r"^signup/$", views.signup, name="account_signup"),
     url(r"^login/$", views.login, name="account_login"),
     url(r"^logout/$", views.logout, name="account_logout"),
+    url(r"^profileedit/$", editprofile, name="account_edit"),
 
     url(r"^password/change/$", views.password_change,
         name="account_change_password"),
