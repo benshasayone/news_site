@@ -40,3 +40,5 @@ def editprofile(request,):
     else:
         form = editform()
     return render(request, 'profile_edit.html')
+
+

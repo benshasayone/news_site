@@ -1,11 +1,28 @@
 <div class="w3-bottom">
-<footer id="myFooter" class="w3-display-bottom">
+<form id="myFooter" class="w3-display-bottom">
     <div class="w3-container w3-theme-l2 w3-padding-32 ">
       <h4>Footer</h4>
     </div>
+</form>
 
     <div class="w3-container w3-theme-l1">
       <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+        <form class="form-horizontal" role="form" action="/home/letter/" method="post" id="NewsletterForm">
+            {% csrf_token %}
+          <div class="form-group">
+            <label class="col-lg-3 control-label">email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="email"  name="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" value="Save Changes">
+              <span></span>
+            </div>
+          </div>
+        </form>
     </div>
   </footer>
 </div>

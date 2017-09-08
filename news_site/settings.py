@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'sendgrid',
     'django_comments',
     'django_social_share',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -88,10 +89,21 @@ WSGI_APPLICATION = 'news_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'newscorner',
+        'USER': 'newsadmin',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -164,11 +176,12 @@ LOGIN_REDIRECT_URL = '/home'
 
 SITE_ID = 1
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'atleyvarghese'
-EMAIL_HOST_PASSWORD = '9388481936a'
-EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'newscorner.atley@gmail.com'
+EMAIL_HOST_PASSWORD = '9388481936'
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ACCOUNT_LOGOUT_REDIRECT_URL = '/home'
 
@@ -186,9 +199,13 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
+ACCOUNT_LOGOUT_ON_GET = True
+
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = '*'
+SOCIALACCOUNT_ADAPTER = 'accounts.my_adapter.SocialAccountAdapter'
+
+
 
 
 
@@ -196,7 +213,6 @@ ALLOWED_HOSTS = '*'
     # Don't put anything in this directory yourself; store your static files
     # in apps' "static/" subdirectories and in STATICFILES_DIRS.
     # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
 
     # URL prefix for static files.
     # Example: "http://example.com/static/", "http://static.example.com/"
