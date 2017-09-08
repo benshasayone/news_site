@@ -25,7 +25,7 @@ SECRET_KEY = 'h4%)$(w^14+yh=+30*0%k2gc$0+wp*x%i57tf#q$3k*j!byi2y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['newscorner.herokuapp.com',]
 
 
 # Application definition
