@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'news_site.urls'
@@ -99,11 +100,11 @@ WSGI_APPLICATION = 'news_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'newscorner',
-        'USER': 'newsadmin',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd4akje1e74iihb',
+        'USER': 'gevtrmolvvypib',
+        'PASSWORD':'96cb675b39f885aaece92696d8715c16fa487737b0d77a6e40a15291bb6d1b4d',
+        'HOST': 'ec2-54-163-227-202.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -206,6 +207,7 @@ APPEND_SLASH = True
 SOCIALACCOUNT_ADAPTER = 'accounts.my_adapter.SocialAccountAdapter'
 
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 
