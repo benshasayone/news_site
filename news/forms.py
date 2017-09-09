@@ -1,6 +1,5 @@
 from django import forms
 
-from news.models import NewsLetter
 
 
 class NewsletterForm(forms.Form):
