@@ -159,7 +159,7 @@ def sub1(request):
             mail_subject = 'Activate your blog account.'
             message = render_to_string('acc_active_email.html', {
                 'user': obj.email,
-                'domain': 'localhost:8000',
+                'domain': current_site,
                 'uid':urlsafe_base64_encode(force_bytes(obj.pk)),
                 'token':account_activation_token.make_token(obj),
             })
