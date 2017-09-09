@@ -25,7 +25,7 @@ SECRET_KEY = 'h4%)$(w^14+yh=+30*0%k2gc$0+wp*x%i57tf#q$3k*j!byi2y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['newscorner.herokuapp.com',]
+ALLOWED_HOSTS = ['newscorner.herokuapp.com','localhost']
 
 
 # Application definition
@@ -48,10 +48,7 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    'sendgrid',
     'django_comments',
-    'django_social_share',
-    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -173,7 +170,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/'
 
 SITE_ID = 1
 
@@ -184,7 +181,7 @@ EMAIL_HOST_PASSWORD = '9388481936'
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ACCOUNT_LOGOUT_REDIRECT_URL = '/home'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[NewsCorner] "
 
