@@ -9,7 +9,7 @@ var q = $('#q').val();
 console.log(q);
 $.ajax({
     type: "GET",
-    url: "/home/search/",
+    url: "/search/",
     dataType: "html",
     data: {'q': q },
     success: function(data) {
