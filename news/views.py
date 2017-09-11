@@ -8,7 +8,7 @@ from django.utils.encoding import force_text,force_bytes
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 # Create your views here.
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -18,6 +18,7 @@ from django.views.generic import ListView, DetailView
 from news.forms import NewsletterForm
 from news.models import News, NewsTypes, NewsLetter
 from news.tokens import account_activation_token
+from django.http import Http404
 
 
 class NewsListView(ListView):
@@ -32,6 +33,7 @@ class NewsListView(ListView):
         context = super(NewsListView, self).get_context_data(**kwargs)
         context['news_cat_list'] = NewsTypes.objects.all()
         return context
+
 
     def get_absolute_url(self):
         return reverse('news-detail', args=[str(self.id)])
@@ -48,8 +50,10 @@ class NewsDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(NewsDetailView, self).get_context_data(**kwargs)
         get_slug = self.kwargs['slug']
+        cat = self.kwargs['newstype']
         context['news_cat_list'] = NewsTypes.objects.all()
         context['news_det'] = News.objects.get(slug=get_slug)
+        context['type2'] = cat
         return context
 
 
@@ -69,7 +73,10 @@ class NewsCatView(ListView):
 
     def get_queryset(self,**kwargs):
         ntype = self.kwargs['newstype']
+        get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'),news_type__type=ntype)
         return News.objects.filter(news_type__type=ntype).order_by('-pub_date')
+
+
 
     def get_context_data(self, **kwargs):
         context = super(NewsCatView, self).get_context_data(**kwargs)
@@ -100,8 +107,7 @@ class NewsSearchView(ListView):
             q = self.request.GET.get('q')
             if q is not None:
                 return News.objects.filter(
-                    Q(title__contains=q) |
-                    Q(content__contains=q)).order_by('-pub_date')
+                    Q(title__icontains=q) ).order_by('-pub_date')
 
 
 
@@ -116,8 +122,7 @@ class NewsSearchCatView(ListView):
             w = self.request.GET.get('w')
             if q is not None:
                 return News.objects.filter(news_type__type = w ).filter(
-                    Q(title__contains=q) |
-                    Q(content__contains=q)).order_by('-pub_date')
+                    Q(title__icontains=q)).order_by('-pub_date')
 
 
 @receiver(post_save,sender=News)
