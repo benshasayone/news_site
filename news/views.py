@@ -100,7 +100,6 @@ class NewsSearchView(ListView):
     model = News
     template_name = 'results.html'
     context_object_name = 'results'
-    page_template = 'entry_index_page.html'
 
     def get_queryset(self, **kwargs):
         if self.request.is_ajax():

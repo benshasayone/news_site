@@ -20,7 +20,7 @@ from news_site import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^nc-admin/', admin.site.urls),
     url(r'^', include('news.urls', namespace='news')),
     url(r'^accounts/', include('allauth.urls')),
 
