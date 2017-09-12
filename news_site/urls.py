@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^nc-admin/', admin.site.urls),
     url(r'^', include('news.urls', namespace='news')),
-    url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('accounts.urls')),
 
     url(r'^account/',include('accounts.urls')),
     url(r'^comments/', include('django_comments.urls')),
