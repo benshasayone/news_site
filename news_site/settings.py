@@ -25,7 +25,7 @@ SECRET_KEY = 'h4%)$(w^14+yh=+30*0%k2gc$0+wp*x%i57tf#q$3k*j!byi2y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['newscorner.herokuapp.com','localhost']
 
 
 # Application definition
@@ -48,9 +48,7 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    'sendgrid',
     'django_comments',
-    'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'news_site.urls'
@@ -88,10 +87,21 @@ WSGI_APPLICATION = 'news_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd4akje1e74iihb',
+        'USER': 'gevtrmolvvypib',
+        'PASSWORD':'96cb675b39f885aaece92696d8715c16fa487737b0d77a6e40a15291bb6d1b4d',
+        'HOST': 'ec2-54-163-227-202.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -157,20 +167,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media2')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/'
 
 SITE_ID = 1
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'atleyvarghese'
-EMAIL_HOST_PASSWORD = '9388481936a'
-EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'newscorner.atley@gmail.com'
+EMAIL_HOST_PASSWORD = '9388481936'
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ACCOUNT_LOGOUT_REDIRECT_URL = '/home'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[NewsCorner] "
 
@@ -186,9 +197,14 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
+ACCOUNT_LOGOUT_ON_GET = True
+
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = '*'
+SOCIALACCOUNT_ADAPTER = 'accounts.my_adapter.SocialAccountAdapter'
+
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 
@@ -196,7 +212,6 @@ ALLOWED_HOSTS = '*'
     # Don't put anything in this directory yourself; store your static files
     # in apps' "static/" subdirectories and in STATICFILES_DIRS.
     # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
 
     # URL prefix for static files.
     # Example: "http://example.com/static/", "http://static.example.com/"

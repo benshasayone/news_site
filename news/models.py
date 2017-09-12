@@ -46,6 +46,8 @@ class News(models.Model):
 
 class NewsLetter(models.Model):
     email = models.EmailField()
+    token = models.CharField(max_length=40,default='123456789')
+    status = models.BooleanField(default=False)
 
     def __str__(self):  # __unicode__ on Python 2
         return self.email

@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% block title %}
+    <title>{{ news.title }}</title>
+{% endblock %}
+
 {% load comments %}
-{% load social_share %}
 {% block content%}
 <script>
 $(document).ready( function() {
@@ -9,7 +12,7 @@ var q = $('#q').val();
 console.log(q);
 $.ajax({
     type: "GET",
-    url: "/home/search/",
+    url: "/search/",
     dataType: "html",
     data: {'q': q },
     success: function(data) {
@@ -38,6 +41,11 @@ $.ajax({
     <img src="{{ news.image.url }}" style="display: block;margin: auto;max-width: 100%;
     height: auto;padding-bottom: 2cm;"/>
 {% endif %}
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on Facebook</a><br>
+<a href="https://twitter.com/home?status=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on Twitter</a><br>
+<a href="https://plus.google.com/share?url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on Google+</a><br>
+<a href="https://www.linkedin.com/shareArticle?mini=true&url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}&title={{ news.title }}=&source=">Share on LinkedIn</a>
+
 {% endblock %}
 
 {% block comment %}
