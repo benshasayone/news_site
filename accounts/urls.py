@@ -1,11 +1,11 @@
 from allauth.account import views
 from django.conf.urls import url, include
 
-from accounts.views import editprofile
+from accounts.views import editprofile, MySignupView, MyLoginView
 
 urlpatterns = [
-    url(r"^signup/$", views.signup, name="account_signup"),
-    url(r"^login/$", views.login, name="account_login"),
+    url(r"^signup/$", MySignupView.as_view(), name="account_signup"),
+    url(r"^login/$", MyLoginView.as_view(), name="account_login"),
     url(r"^logout/$", views.logout, name="account_logout"),
     url(r"^profileedit/$", editprofile, name="account_edit"),
 
