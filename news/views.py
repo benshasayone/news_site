@@ -76,8 +76,6 @@ class NewsCatView(ListView):
         get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'),news_type__type=ntype)
         return News.objects.filter(news_type__type=ntype).order_by('-pub_date')
 
-
-
     def get_context_data(self, **kwargs):
         context = super(NewsCatView, self).get_context_data(**kwargs)
         ntype = self.kwargs['newstype']

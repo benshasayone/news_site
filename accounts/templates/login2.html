@@ -1,4 +1,4 @@
-{% extends "base2.html" %}
+{% extends "base4.html" %}
 {% load i18n %}
 <style>
   body {
@@ -39,6 +39,9 @@
     line-height: 300%;
   }
 </style>
+{% block side %}
+
+{% endblock %}
 {% block content %}
 {% if form.error_messages %}
 {{ form.errors_messages}}
