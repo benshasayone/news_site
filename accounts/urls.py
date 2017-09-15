@@ -1,7 +1,7 @@
 from allauth.account import views
 from django.conf.urls import url, include
 
-from accounts.views import editprofile, MySignupView, MyLoginView
+from accounts.views import editprofile, MySignupView, MyLoginView, MyEmailVerificationSentView, MyConfirmEmailView
 
 urlpatterns = [
     url(r"^signup/$", MySignupView.as_view(), name="account_signup"),
@@ -17,9 +17,9 @@ urlpatterns = [
 
     # E-mail
     url(r"^email/$", views.email, name="account_email"),
-    url(r"^confirm-email/$", views.email_verification_sent,
+    url(r"^confirm-email/$", MyEmailVerificationSentView.as_view(),
         name="account_email_verification_sent"),
-    url(r"^confirm-email/(?P<key>[-:\w]+)/$", views.confirm_email,
+    url(r"^confirm-email/(?P<key>[-:\w]+)/$", MyConfirmEmailView.as_view(),
         name="account_confirm_email"),
 
     # password reset
