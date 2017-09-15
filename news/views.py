@@ -15,7 +15,7 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import ListView, DetailView
 
-from news.forms import NewsletterForm
+from news.forms import NewsletterForm, ContactusForm
 from news.models import News, NewsTypes, NewsLetter
 from news.tokens import account_activation_token
 from django.http import Http404
@@ -191,3 +191,12 @@ def activate(request, uidb64, token):
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
+
+def up1(request):
+    if request.method == 'POST':
+        form = ContactusForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("/")
+    else:
+        form = ContactusForm()
