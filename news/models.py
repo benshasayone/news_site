@@ -15,7 +15,7 @@ class NewsTypes(models.Model):
     class Meta:
         verbose_name_plural = "News Types"
 
-    def __str__(self):  # __unicode__ on Python 2
+    def __str__(self):
         return self.type
 
 
@@ -40,8 +40,9 @@ class News(models.Model):
     def get_absolute_url(self):
         return reverse('news:news-details', kwargs={'slug': self.slug,'newstype':self.news_type.type})
 
-    def __str__(self):  # __unicode__ on Python 2
+    def __str__(self):
         return self.title
+
 
 
 class NewsLetter(models.Model):
@@ -49,5 +50,19 @@ class NewsLetter(models.Model):
     token = models.CharField(max_length=40,default='123456789')
     status = models.BooleanField(default=False)
 
-    def __str__(self):  # __unicode__ on Python 2
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name_plural = "NewsLetter"
+
+
+class Contactus(models.Model):
+    name = models.CharField(max_length=100,default='Anonymous')
+    email = models.EmailField()
+    subject = models.CharField(max_length=40)
+    message =models.TextField()
+    added_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
         return self.email

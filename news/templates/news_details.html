@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base3.html" %}
 {% block title %}
     <title>{{ news.title }}</title>
 {% endblock %}
@@ -33,38 +33,26 @@ $.ajax({
     <div class="w3-container">
         <h1 class="w3-text-teal">{{ news.title }}</h1>
         <p>{{ news.content}}</p>
-    </div>
 
-  </div>
 <div class="center">
 {% if news.image %}
     <img src="{{ news.image.url }}" style="display: block;margin: auto;max-width: 100%;
     height: auto;padding-bottom: 2cm;"/>
 {% endif %}
-<a href="https://www.facebook.com/sharer/sharer.php?u=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on Facebook</a><br>
+</div>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}"
+   class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Share on Facebook</a><br>
 <a href="https://twitter.com/home?status=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on Twitter</a><br>
 <a href="https://plus.google.com/share?url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on Google+</a><br>
 <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}&title={{ news.title }}=&source=">Share on LinkedIn</a>
+</div>
 
+  </div>
 {% endblock %}
 
 {% block comment %}
+
   {% include 'list_comment.html' %}
-<div>
-    <pre>
-
-
-
-
-
-
-
-
-
-
-    </pre>
-</div>
-
 {% endblock %}
 
 

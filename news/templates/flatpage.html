@@ -1,0 +1,19 @@
+{% extends "base3.html" %}
+{% block Nav %}
+  {% include 'Navbar1.html' %}
+{% endblock %}
+{% block side%}
+<div class="w3-main" style="margin-left:100px">
+    <div class="w3-row w3-padding-64">
+       <div class="w3-container">
+          <div class="w3-container">
+            <h3 class="w3-text-teal">{{ flatpage.title }}</h3>
+            <p>{{ flatpage.content }}</p>
+         </div>
+       </div>
+     </div>
+</div>
+{% endblock %}
+{% block foot %}
+    {% include 'footer.html' %}
+{% endblock %}

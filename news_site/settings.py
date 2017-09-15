@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'django_comments',
+    'django.contrib.flatpages',
+    'django.contrib.sitemaps',
+    'robots',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +156,7 @@ AUTHENTICATION_BACKENDS = (
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE =  'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -185,11 +188,11 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[NewsCorner] "
 
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/account/login/'
 
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL=LOGIN_URL
 
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/accounts/login/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/account/login/'
 
 ACCOUNT_EMAIL_REQUIRED = True
 

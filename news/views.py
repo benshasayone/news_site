@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.db.models import Q
@@ -15,8 +16,8 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import ListView, DetailView
 
-from news.forms import NewsletterForm
-from news.models import News, NewsTypes, NewsLetter
+from news.forms import NewsletterForm, contactusForm
+from news.models import News, NewsTypes, NewsLetter, Contactus
 from news.tokens import account_activation_token
 from django.http import Http404
 
@@ -76,8 +77,6 @@ class NewsCatView(ListView):
         get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'),news_type__type=ntype)
         return News.objects.filter(news_type__type=ntype).order_by('-pub_date')
 
-
-
     def get_context_data(self, **kwargs):
         context = super(NewsCatView, self).get_context_data(**kwargs)
         ntype = self.kwargs['newstype']
@@ -126,15 +125,6 @@ class NewsSearchCatView(ListView):
 
 @receiver(post_save,sender=News)
 def send_user_data_when_created_by_admin(sender, instance, **kwargs):
-    try:
-        thread1 = send_mail()
-        thread1.start()
-    except:
-        #send_mail()
-        pass
-
-
-def send_mail():
     obj = News.objects.last()
 
     # title = obj.title
@@ -147,7 +137,7 @@ def send_mail():
     html_content = render_to_string('newsletter.html', {'news': obj})  # ...
 
     # create the email, and attach the HTML version as well.
-    message = EmailMessage(subject='Newsletter', body=html_content, to=list(NewsLetter.objects.filter(status=True)))
+    message = EmailMessage(subject='Newsletter', body=html_content, to=list(NewsLetter.objects.filter(status=True).distinct()))
     message.content_subtype = 'html'
     message.send()
 
@@ -160,7 +150,7 @@ def sub1(request):
             obj = NewsLetter.objects.create(email=form.cleaned_data['email'],token='123456789',status=False)
             obj.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Activate your NewsLetter Subscription'
             message = render_to_string('acc_active_email.html', {
                 'user': obj.email,
                 'domain': current_site,
@@ -193,3 +183,42 @@ def activate(request, uidb64, token):
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
+
+def up1(request):
+    if request.method == 'POST':
+        print("inside if")
+        form = contactusForm(request.POST)
+        if form.is_valid():
+            print("inside if2")
+            obj=Contactus.objects.create(name=form.cleaned_data['name'],
+                                         email=form.cleaned_data['email'],subject=form.cleaned_data['subject'],
+                                         message=form.cleaned_data['data'])
+            obj.save()
+            mail_subject = 'NewsCorner - Contact us - Page'
+            mail_subject2 = 'NewsCorner - Contact Us ' + obj.subject
+            message = render_to_string('contactus_email.html', {
+                'user': obj.email,
+            })
+            message2 = render_to_string('contactus_email2.html', {
+                'user': obj.name,
+                'email': obj.email,
+                'subject': obj.subject,
+                'message': obj.message,
+
+            })
+            to_email = obj.email
+            obj = User.objects.get(is_superuser=True)
+            to_email2 = obj.email
+            email2 = EmailMessage(
+                mail_subject2, message2, to=[to_email2]
+            )
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+            email2.send()
+            return redirect("/")
+    else:
+        form = contactusForm()
+
+    return render(request, 'contact_page.html',)
