@@ -37,6 +37,14 @@ $.ajax({
       </div>
     </div>
   </div>
+  {% empty %}
+  <div class="w3-row w3-padding-70">
+    <div class="w3-container">
+      <div class="w3-container">
+      <p>"Sorry no news added yet to this Category"</p>
+    </div>
+    </div>
+  </div>
   {% endfor %}
   {% if is_paginated %}
   <div class="text">
