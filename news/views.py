@@ -16,8 +16,8 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import ListView, DetailView
 
-from news.forms import NewsletterForm, ContactusForm
-from news.models import News, NewsTypes, NewsLetter
+from news.forms import NewsletterForm, contactusForm
+from news.models import News, NewsTypes, NewsLetter, Contactus
 from news.tokens import account_activation_token
 from django.http import Http404
 
@@ -186,22 +186,27 @@ def activate(request, uidb64, token):
 
 def up1(request):
     if request.method == 'POST':
-        form = ContactusForm(request.POST, request.FILES)
+        print("inside if")
+        form = contactusForm(request.POST)
         if form.is_valid():
-            form.save()
+            print("inside if2")
+            obj=Contactus.objects.create(name=form.cleaned_data['name'],
+                                         email=form.cleaned_data['email'],subject=form.cleaned_data['subject'],
+                                         message=form.cleaned_data['data'])
+            obj.save()
             mail_subject = 'NewsCorner - Contact us - Page'
-            mail_subject2 = 'NewsCorner - Contact Us ' + form.cleaned_data.get('subject')
+            mail_subject2 = 'NewsCorner - Contact Us ' + obj.subject
             message = render_to_string('contactus_email.html', {
-                'user': form.cleaned_data.get('email'),
+                'user': obj.email,
             })
             message2 = render_to_string('contactus_email2.html', {
-                'user': form.cleaned_data.get('name'),
-                'email': form.cleaned_data.get('email'),
-                'subject': form.cleaned_data.get('subject'),
-                'message': form.cleaned_data.get('message'),
+                'user': obj.name,
+                'email': obj.email,
+                'subject': obj.subject,
+                'message': obj.message,
 
             })
-            to_email = form.cleaned_data.get('email')
+            to_email = obj.email
             obj = User.objects.get(is_superuser=True)
             to_email2 = obj.email
             email2 = EmailMessage(
@@ -214,7 +219,6 @@ def up1(request):
             email2.send()
             return redirect("/")
     else:
-        form = ContactusForm()
+        form = contactusForm()
 
-    return render(request, 'up.html', {
-        'form': form})
+    return render(request, 'contact_page.html',)

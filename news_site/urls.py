@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
 from news_site import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from news_site.sitemap import news_sitemap, category_sitemap
+
+sitemaps = {
+    'news': news_sitemap,'category':category_sitemap,
+}
 
 urlpatterns = [
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^nc-admin/', admin.site.urls),
     url(r'^', include('news.urls', namespace='news')),
     url(r'^accounts/', include('allauth.urls')),
@@ -27,7 +33,8 @@ urlpatterns = [
     url(r'^account/',include('accounts.urls')),
     url(r'^comments/', include('django_comments.urls')),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
-
-
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+                      name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^robots\.txt$', include('robots.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

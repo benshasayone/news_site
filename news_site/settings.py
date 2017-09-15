@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django_comments',
     'django.contrib.flatpages',
+    'django.contrib.sitemaps',
+    'robots',
 ]
 
 MIDDLEWARE = [
