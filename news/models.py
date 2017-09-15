@@ -44,6 +44,7 @@ class News(models.Model):
         return self.title
 
 
+
 class NewsLetter(models.Model):
     email = models.EmailField()
     token = models.CharField(max_length=40,default='123456789')

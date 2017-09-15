@@ -1,5 +1,6 @@
 {% autoescape off %}
 Hi {{ obj.email }},
-Please click on the link to confirm your registration,
+Please click on the link to confirm your registration for our Newsletter,
 http://{{ domain }}{% url 'news:activate' uidb64=uid token=token %}
+if wish not recevice them please ignore
 {% endautoescape %}

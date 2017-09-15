@@ -26,6 +26,8 @@ urlpatterns = [
 
     url(r'^account/',include('accounts.urls')),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
+
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
