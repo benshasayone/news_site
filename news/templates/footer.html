@@ -105,7 +105,7 @@
                                         <span class="input-group-addon">E-mail :</span>
                                         <input class="form-control" placeholder="Write your email .." type="email"  name="email">
                                         <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Subscribe !</button>
+                                    <button onclick="myFunction()" class="btn btn-primary" type="submit">Subscribe !</button>
                     </span>
 
                                     </div>
@@ -123,27 +123,8 @@
 
 </footer>
 
-<!--<style>-->
-<!--#footer {-->
-<!--background-color:black;-->
-<!--</style>-->
-<!--<div id="footer">-->
-<!--<div class="container">-->
-<!--<form class="form-horizontal" role="form" action="/letter/" method="post" id="NewsletterForm">-->
-<!--{% csrf_token %}-->
-<!--<div class="form-group">-->
-<!--<label class="col-lg-3 control-label">email:</label>-->
-<!--<div class="col-lg-8">-->
-<!--<input class="form-control" type="email"  name="email">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group">-->
-<!--<label class="col-md-3 control-label"></label>-->
-<!--<div class="col-md-8">-->
-<!--<input type="submit" class="btn btn-primary" value="Save Changes">-->
-<!--<span></span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</form>-->
-<!--</div>-->
-<!--</div>-->
+<script>
+function myFunction() {
+alert("Thanks for your interest we have send you an email please complete the verification to receive our NewsLetter")
+}
+</script>

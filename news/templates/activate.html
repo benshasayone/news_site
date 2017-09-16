@@ -1,0 +1,18 @@
+{% extends "base3.html" %}
+{% block Nav %}
+{% include 'Navbar1.html' %}
+{% endblock %}
+{% block side%}
+<div class="w3-main" style="margin-left:150px">
+    <div class="w3-row w3-padding-80">
+        <div class="w3-container">
+            <div class="w3-container">
+                <p>{{ message }}</p><br><a href="/">Back To Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}
+{% block foot %}
+{% include 'footer.html' %}
+{% endblock %}

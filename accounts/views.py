@@ -1,30 +1,10 @@
-from allauth.account.views import SignupView, LoginView, PasswordResetView, EmailVerificationSentView, ConfirmEmailView
+from allauth.account.views import SignupView, LoginView, EmailVerificationSentView, ConfirmEmailView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.checks import messages
-from django.dispatch import receiver
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse
-
-from accounts.forms.forms import SignUpForm
 from accounts.templates.forms import editform
 
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('news:news-list')
-    else:
-        form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
 
 @login_required
 def editprofile(request,):
@@ -42,11 +22,11 @@ def editprofile(request,):
     return render(request, 'profile_edit.html')
 
 class MySignupView(SignupView):
-    template_name = 'signup2.html'
+    template_name = 'signup.html'
 
 
 class MyLoginView(LoginView):
-    template_name = 'login2.html'
+    template_name = 'login.html'
 
 # class MyPasswordResetView(PasswordResetView):
 #     template_name = 'login2.html'

@@ -1,5 +1,5 @@
 from allauth.account import views
-from django.conf.urls import url, include
+from django.conf.urls import url
 
 from accounts.views import editprofile, MySignupView, MyLoginView, MyEmailVerificationSentView, MyConfirmEmailView
 
