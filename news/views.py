@@ -14,7 +14,8 @@ from django.shortcuts import render, redirect, get_list_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views.generic import ListView, DetailView
+from django.views import View
+from django.views.generic import ListView, DetailView, TemplateView
 
 from news.forms import NewsletterForm, contactusForm
 from news.models import News, NewsTypes, NewsLetter, Contactus
@@ -222,3 +223,7 @@ def up1(request):
         form = contactusForm()
 
     return render(request, 'contact_page.html',)
+
+
+class my_custom_page_not_found_view(TemplateView):
+    template_name = '404_page.html'
