@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+
+from news.views import my_custom_page_not_found_view
 from news_site import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from news_site.sitemap import news_sitemap, category_sitemap
+
+
+handler404 = my_custom_page_not_found_view.as_view()
+
+
 
 sitemaps = {
     'news': news_sitemap,'category':category_sitemap,
