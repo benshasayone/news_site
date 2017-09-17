@@ -7,14 +7,13 @@ from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import redirect, get_list_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.encoding import force_text, force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView, FormView
+
 from news.forms import NewsletterForm, contactusForm
 from news.models import News, NewsTypes, NewsLetter, Contactus
 from news.tokens import account_activation_token
@@ -115,7 +114,7 @@ def send_user_data_when_created_by_admin(sender, instance, **kwargs):
 
 class SubscribeView(FormView):
     form_class = NewsletterForm
-    success_url = '/'
+    success_url = 'newsletterregister.html'
 
     def form_valid(self, form):
         obj = NewsLetter.objects.filter(email=form.cleaned_data['email'])
@@ -194,7 +193,7 @@ class ActivateView(TemplateView):
 class ContactusView(FormView):
     template_name = 'contact_page.html'
     form_class = contactusForm
-    success_url = '/'
+    success_url = 'contactusconfirm.html'
 
     def form_valid(self, form):
         obj = Contactus.objects.create(name=form.cleaned_data['name'],

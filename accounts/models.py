@@ -1,5 +1,4 @@
 from allauth.account.signals import user_signed_up
-from django.db import models
 from django.dispatch import receiver
 
 

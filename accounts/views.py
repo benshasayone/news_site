@@ -1,9 +1,9 @@
 from allauth.account.views import SignupView, LoginView, EmailVerificationSentView, ConfirmEmailView
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from accounts.templates.forms import editform
+
+from accounts.forms.forms import editform
 
 
 @login_required

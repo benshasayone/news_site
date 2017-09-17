@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% load comments %}
+{% block Nav %}
+{% include 'Navbar1.html' %}
+{% endblock %}
 {% block content%}
 <script>
 $(document).ready( function() {
@@ -32,7 +35,7 @@ $.ajax({
   <div class="w3-row w3-padding-64">
     <div class="w3-container">
         <h1 class="w3-text-teal">{{ news.title }}</h1>
-        <p>{{ news.content}}</p>
+        <pre>{{ news.content}}</pre>
 
 <div class="center">
 {% if news.image %}
