@@ -14,14 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 
 from news.views import my_custom_page_not_found_view
 from news_site import settings
-from django.conf.urls.static import static
-from django.contrib.sitemaps.views import sitemap
 from news_site.sitemap import news_sitemap, category_sitemap
-
 
 handler404 = my_custom_page_not_found_view.as_view()
 
