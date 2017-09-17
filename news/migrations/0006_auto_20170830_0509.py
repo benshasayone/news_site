@@ -7,7 +7,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('news', '0005_news_slug'),
     ]
@@ -16,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='news',
             name='slug',
-            field=autoslug.fields.AutoSlugField(blank=True, editable=False, null=True, populate_from='title', unique=True),
+            field=autoslug.fields.AutoSlugField(blank=True, editable=False, null=True, populate_from='title',
+                                                unique=True),
         ),
     ]

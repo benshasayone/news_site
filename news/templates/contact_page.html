@@ -1,4 +1,7 @@
 {% extends "base3.html" %}
+{% block title %}
+<title>Contact Us</title>
+{% endblock %}
 
 <style>
 
@@ -93,110 +96,120 @@
 			}
 		}
 	/* Conatct end */
+
 </style>
 {% block Nav %}
-  {% include 'Navbar1.html' %}
+{% include 'Navbar1.html' %}
 {% endblock %}
 {% block side%}
 <div class="w3-padding-64">
-<div class="container animated fadeIn">
+    <div class="container animated fadeIn">
 
-  <div class="row">
-    <h1 class="header-title"> Contact </h1>
-    <hr>
-    <div class="col-sm-12" id="parent">
-    	<div class="col-sm-6">
-    	<iframe width="100%" height="320px;" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJxe-_u5IMCDsRiEv2-hduN1k&key=AIzaSyAf64FepFyUGZd3WFWhZzisswVx2K37RFY" allowfullscreen></iframe>
-    	</div>
+        <div class="row">
+            <h1 class="header-title"> Contact </h1>
+            <hr>
+            <div class="col-sm-12" id="parent">
+                <div class="col-sm-6">
+                    <iframe width="100%" height="320px;" frameborder="0" style="border:0"
+                            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJxe-_u5IMCDsRiEv2-hduN1k&key=AIzaSyAf64FepFyUGZd3WFWhZzisswVx2K37RFY"
+                            allowfullscreen></iframe>
+                </div>
 
-    	<div class="col-sm-6">
-    		<form role="form" action="/contact/" class="contact-form" method="post" id="contactusForm">
-	            {% csrf_token %}
-		        <div class="form-group">
-		          <input type="text" class="form-control"  placeholder="Name" required="" autofocus="" name="name">
-		        </div>
-		    
-		    
-		        <div class="form-group form_left">
-		          <input type="email" class="form-control"   placeholder="Email" required="" name="email">
-		        </div>
-		    
-		      <div class="form-group">
-		           <input type="text" class="form-control"   placeholder="Subject" required="" name="subject">
-		      </div>
-		      <div class="form-group">
-                  <textarea type="text" class="form-control textarea-contact" rows="5" placeholder="Type Your Message/Feedback here..." required="" name="data"></textarea></div>
-		      <br>
-	      	  <button type="submit" class="btn btn-default btn-send"> <span class="glyphicon glyphicon-send"></span> Send </button>
-		      </div>
-     		</form>
-    	</div>
+                <div class="col-sm-6">
+                    <form role="form" action="/contact/" class="contact-form" method="post" id="contactusForm">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" required="" autofocus=""
+                                   name="name">
+                        </div>
+
+
+                        <div class="form-group form_left">
+                            <input type="email" class="form-control" placeholder="Email" required="" name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject" required="" name="subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea type="text" class="form-control textarea-contact" rows="5"
+                                      placeholder="Type Your Message/Feedback here..." required=""
+                                      name="data"></textarea></div>
+                        <br>
+                        <button type="submit" class="btn btn-default btn-send"><span
+                                class="glyphicon glyphicon-send"></span> Send
+                        </button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-<br>
     <br>
-  <div class="container second-portion">
-	<div class="row">
-        <!-- Boxes de Acoes -->
-    	<div class="col-xs-12 col-sm-6 col-lg-4">
-			<div class="box">							
-				<div class="icon">
-					<div class="info">
-						<h3 class="title">MAIL & WEBSITE</h3>
-						<p>
-							<i class="fa fa-envelope" aria-hidden="true"></i> &nbsp info@sayonetech.com
-							<br>
-							<br>
-							<i class="fa fa-globe" aria-hidden="true"></i> &nbsp www.sayonetech.com
-						</p>
-					
-					</div>
-				</div>
-				<div class="space"></div>
-			</div> 
-		</div>
-			
-        <div class="col-xs-12 col-sm-6 col-lg-4">
-			<div class="box">							
-				<div class="icon">
-					<div class="info">
-						<h3 class="title">CONTACT</h3>
-    					<p>
-							<i class="fa fa-mobile" aria-hidden="true"></i> &nbsp (+91)-XXXXX XXXXX
-							<br>
-							<br>
-							<i class="fa fa-mobile" aria-hidden="true"></i> &nbsp  (+91)-XXXXXXXXXX
-						</p>
-						
-					</div>
-				</div>
-				<div class="space"></div>
-			</div> 
-		</div>
-			
-        <div class="col-xs-12 col-sm-6 col-lg-4">
-			<div class="box">							
-				<div class="icon">
-					<div class="info">
-						<h3 class="title">ADDRESS</h3>
-    					<p>
-							 <i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp SayOne Technologies Pvt Ltd,7/401(I), 2nd floor, Cyber house, Old civil lane Rd, Kakkanad, Kochi, India, Pin: 682030
-						</p>
-					</div>
-				</div>
-				<div class="space"></div>
-			</div> 
-		</div>		    
-		<!-- /Boxes de Acoes -->
-		
-		<!--My Portfolio  dont Copy this -->
-	    
-	</div>
-</div>
+    <br>
+    <div class="container second-portion">
+        <div class="row">
+            <!-- Boxes de Acoes -->
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+                <div class="box">
+                    <div class="icon">
+                        <div class="info">
+                            <h3 class="title">MAIL & WEBSITE</h3>
+                            <p>
+                                <i class="fa fa-envelope" aria-hidden="true"></i> &nbsp info@sayonetech.com
+                                <br>
+                                <br>
+                                <i class="fa fa-globe" aria-hidden="true"></i> &nbsp www.sayonetech.com
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+                <div class="box">
+                    <div class="icon">
+                        <div class="info">
+                            <h3 class="title">CONTACT</h3>
+                            <p>
+                                <i class="fa fa-mobile" aria-hidden="true"></i> &nbsp (+91)-XXXXX XXXXX
+                                <br>
+                                <br>
+                                <i class="fa fa-mobile" aria-hidden="true"></i> &nbsp (+91)-XXXXXXXXXX
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+                <div class="box">
+                    <div class="icon">
+                        <div class="info">
+                            <h3 class="title">ADDRESS</h3>
+                            <p>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp SayOne Technologies Pvt
+                                Ltd,7/401(I), 2nd floor, Cyber house, Old civil lane Rd, Kakkanad, Kochi, India, Pin:
+                                682030
+                            </p>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                </div>
+            </div>
+            <!-- /Boxes de Acoes -->
+
+            <!--My Portfolio  dont Copy this -->
+
+        </div>
+    </div>
 
 </div>
 </div>
 {% endblock%}
 {% block foot %}
-    {% include 'footer.html' %}
+{% include 'footer.html' %}
 {% endblock %}

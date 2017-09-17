@@ -23,31 +23,29 @@ class News(models.Model):
     """
         Details about News
     """
-    authors = models.CharField(max_length=100,default='Anonymous')
-    news_type = models.ForeignKey(NewsTypes,related_name='ntypes')
+    authors = models.CharField(max_length=100, default='Anonymous')
+    news_type = models.ForeignKey(NewsTypes, related_name='ntypes')
     title = models.CharField(max_length=200)
     content = models.TextField(default='News yet to added')
     pub_date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='media/',null=True,blank=True)
+    image = models.ImageField(upload_to='media/', null=True, blank=True)
     slug = AutoSlugField(populate_from='title',
                          unique_with=['title'],
                          unique=True, always_update=True)
-
 
     class Meta:
         verbose_name_plural = "News"
 
     def get_absolute_url(self):
-        return reverse('news:news-details', kwargs={'slug': self.slug,'newstype':self.news_type.type})
+        return reverse('news:news-details', kwargs={'slug': self.slug, 'newstype': self.news_type.type})
 
     def __str__(self):
         return self.title
 
 
-
 class NewsLetter(models.Model):
     email = models.EmailField()
-    token = models.CharField(max_length=40,default='123456789')
+    token = models.CharField(max_length=40, default='123456789')
     status = models.BooleanField(default=False)
 
     def __str__(self):
@@ -58,10 +56,10 @@ class NewsLetter(models.Model):
 
 
 class Contactus(models.Model):
-    name = models.CharField(max_length=100,default='Anonymous')
+    name = models.CharField(max_length=100, default='Anonymous')
     email = models.EmailField()
     subject = models.CharField(max_length=40)
-    message =models.TextField()
+    message = models.TextField()
     added_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

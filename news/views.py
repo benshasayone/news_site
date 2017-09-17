@@ -119,10 +119,10 @@ class SubscribeView(FormView):
     def form_valid(self, form):
         obj = NewsLetter.objects.filter(email=form.cleaned_data['email'])
         if obj:
-            if NewsLetter.objects.filter(email= form.cleaned_data['email'],status =True).exists():
+            if NewsLetter.objects.filter(email=form.cleaned_data['email'], status=True).exists():
                 obj = NewsLetter.objects.get(email=form.cleaned_data['email'], status=True)
                 mail_subject = 'Activate your NewsLetter Subscription'
-                message = render_to_string('alreadyactive.html',{
+                message = render_to_string('alreadyactive.html', {
                     'user': obj.email,
                 })
                 to_email = form.cleaned_data.get('email')
@@ -183,7 +183,8 @@ class ActivateView(TemplateView):
         if obj is not None and account_activation_token.check_token(obj, token):
             obj.status = True
             obj.save()
-            context['message'] = 'Thank you for your email confirmation. Now you will our Newsletter every time a news is added'
+            context[
+                'message'] = 'Thank you for your email confirmation. Now you will our Newsletter every time a news is added'
 
         else:
             context['message'] = 'Activation link is invalid!'

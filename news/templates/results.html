@@ -1,21 +1,23 @@
 {% for new in results %}
 <div class="w3-row w3-padding-70">
-  <div class="w3-container">
     <div class="w3-container">
-      <div>
-        <h3><a href="{% url 'news:news-details' new.news_type.type new.slug %}" class="w3-text-teal w3-hover-white">{{ new.title }}</a></h3>
-        <p>{{ new.content|truncatewords:25 }}</p>
-        <a href="{% url 'news:news-details' new.news_type.type new.slug %}" class="w3-text-teal w3-hover-white">Read more</a>
-      </div>
+        <div class="w3-container">
+            <div>
+                <h3><a href="{% url 'news:news-details' new.news_type.type new.slug %}"
+                       class="w3-text-teal w3-hover-white">{{ new.title }}</a></h3>
+                <p>{{ new.content|truncatewords:25 }}</p>
+                <a href="{% url 'news:news-details' new.news_type.type new.slug %}" class="w3-text-teal w3-hover-white">Read
+                    more</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% empty %}
 <div class="w3-row w3-padding-80" style="margin-top: 20px">
-  <div class="w3-container">
     <div class="w3-container">
-      <h3>"Sorry no news found matching your query "</h3>
+        <div class="w3-container">
+            <h3>"Sorry no news found matching your query "</h3>
+        </div>
     </div>
-  </div>
 </div>
 {% endfor %}
