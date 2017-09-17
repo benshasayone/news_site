@@ -53,11 +53,23 @@
 <div>
 	<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
 		{% csrf_token %}
-		{% csrf_token %}
-		{% if form.errors %}
-		{% for value in form.errors.values %}<p>{{ value }}<br></p>{% endfor %}
-		{% endif %}
-		<div></div>
+		<div class="col-md-3 personal-info"></div>
+
+		<div class="col-md-6 personal-info">
+
+			{% if form.errors %}
+			{% for value in form.errors.values %}
+			<div class="alert alert-info alert-dismissable">
+				<a class="panel-close close" data-dismiss="alert">×</a>
+				<i class="fa fa-coffee"></i>
+
+				<p>{{ value }}</p>
+			</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+		<div class="col-md-3 personal-info"></div>
+
 		<div class="container centered">
 			<div class="row centered-form">
 				<div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2 centered">

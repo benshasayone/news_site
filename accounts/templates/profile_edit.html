@@ -10,11 +10,6 @@
 
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a>
-          <i class="fa fa-coffee"></i>
-          This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div>
         <h3>Personal info</h3>
 
         <form class="form-horizontal" role="form" action="/account/profileedit/" method="post" id="editform">
@@ -36,11 +31,28 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="{{ user.email }}" name="email">
+              <div class="inline">
+                <input class="form-control" type="text" value="{{ user.email }}" name="email" readonly>
+                <a href="/account/email/">Change Email</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Username:</label>
+            <div class="col-lg-8">
+              <input class="form-control" value="{{ user.username }}" name="username" readonly>
             </div>
           </div>
 
-              <input class="form-control" type="hidden" value="{{ user.username }}" name="username">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Password:</label>
+            <div class="col-lg-8">
+              <div class="inline">
+                <input class="form-control" value="Password" readonly>
+                <a href="/account/password/change/">Change Password</a>
+              </div>
+            </div>
+          </div>
 
           <div class="form-group">
             <label class="col-md-3 control-label"></label>

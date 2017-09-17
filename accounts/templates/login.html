@@ -43,9 +43,7 @@
 
 {% endblock %}
 {% block content %}
-{% if form.error_messages %}
-{{ form.errors_messages}}
-{% endif %}
+
 <div class="col-xs-12" style="height:150px;"></div>
 
 <div class="container">
@@ -71,38 +69,52 @@
                 <hr class="hr-or">
 
             </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
 
-<div class="col-xs-6 col-sm-6 col-md-6">
-            <form class="login" method="POST" action="{% url 'account_login' %}" id="LoginForm" name="LoginForm">
-                {% csrf_token %}
-                {% if form.errors %}
-                {% for value in form.errors.values %}<p>{{ value }}<br></p>{% endfor %}
-                {% endif %}
-                <div class="form-group">
-                    <label for="form.id_login">Username or email</label>
-                    <input input type="text" name="login" required="" placeholder="Username" autofocus="autofocus" id="form.id_login" class="form-control">
-                </div>
-                <div class="form-group">
-                    <a class="pull-right" href="/account/password/reset/">Forgot password?</a>
-                    <label for="form.id_password">Password</label>
-                    <input type="password" name="password" required="" placeholder="Password" id="form.id_password" class="form-control">
-                </div>
-                <div class="checkbox pull-right">
-                    <label>
-                        <input type="checkbox" name="remember" id="id_remember">
-                        Remember me </label>
-                </div>
-                <button type="submit" class="btn btn btn-primary">
-                    Log In
-                </button>
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <form class="login" method="POST" action="{% url 'account_login' %}" id="LoginForm" name="LoginForm">
+                    {% csrf_token %}
+                    <div class="col-md-3 personal-info"></div>
 
-            </form>
-</div>
-                            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                    <div class="col-md-6 personal-info">
+
+                        {% if form.errors %}
+                        {% for value in form.errors.values %}
+                        <div class="alert alert-info alert-dismissable">
+                            <a class="panel-close close" data-dismiss="alert">×</a>
+                            <i class="fa fa-coffee"></i>
+
+                            <p>{{ value }}</p>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3 personal-info"></div>
+<br>
+                    <div class="form-group">
+                        <label for="form.id_login">Username</label>
+                        <input input type="text" name="login" required="" placeholder="Username" autofocus="autofocus" id="form.id_login" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <a class="pull-right" href="/account/password/reset/">Forgot password?</a>
+                        <label for="form.id_password">Password</label>
+                        <input type="password" name="password" required="" placeholder="Password" id="form.id_password" class="form-control">
+                    </div>
+                    <div class="checkbox pull-right">
+                        <label>
+                            <input type="checkbox" name="remember" id="id_remember">
+                            Remember me </label>
+                    </div>
+                    <button type="submit" class="btn btn btn-primary">
+                        Log In
+                    </button>
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+
+                </form>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
 
         </div>
     </div><div class="col-xs-12" style="height:300px;"></div>
