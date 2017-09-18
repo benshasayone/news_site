@@ -236,4 +236,4 @@ class ConfirmView1(TemplateView):
 
 
 class ConfirmView2(TemplateView):
-        template_name = 'contactusconfirm.html'
+    template_name = 'contactusconfirm.html'

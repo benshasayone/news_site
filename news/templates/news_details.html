@@ -73,6 +73,7 @@ $.ajax({
 <div class="w3-row w3-padding-64">
     <div class="w3-container">
         <h1 class="w3-text-teal">{{ news.title }}</h1>
+        <h4><i>Posted by {{ news.authors }} on {{ news.pub_date }}</i></h4>
         <p>{{ news.content}}</p>
 
         <div class="center">

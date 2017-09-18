@@ -35,7 +35,7 @@ $.ajax({
                 <h3><a href="{% url 'news:news-details' new.news_type.type new.slug %}"
                        class="w3-text-teal w3-hover-white">{{ new.title }}</a></h3>
                 <p>{{ new.content|truncatewords:25 }}</p>
-                <a href="{% url 'news:news-details' new.news_type.type new.slug %}" class="w3-text-teal w3-hover-white">Read
+                <p><i>Posted by {{ new.authors }} on {{ new.pub_date }}</i></p><a href="{% url 'news:news-details' new.news_type.type new.slug %}" class="w3-text-teal w3-hover-white">Read
                     more</a>
             </div>
         </div>
