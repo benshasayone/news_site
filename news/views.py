@@ -7,7 +7,7 @@ from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.shortcuts import redirect, get_list_or_404
+from django.shortcuts import redirect, get_list_or_404, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.encoding import force_text, force_bytes
@@ -22,7 +22,7 @@ from news.tokens import account_activation_token
 class NewsListView(ListView):
     model = News
     template_name = 'news_list.html'
-    paginate_by = 4
+    paginate_by = 7
     context_object_name = 'news'
     queryset = News.objects.all().order_by('-pub_date')
 
@@ -47,6 +47,7 @@ class NewsDetailView(DetailView):
         context = super(NewsDetailView, self).get_context_data(**kwargs)
         get_slug = self.kwargs['slug']
         cat = self.kwargs['newstype']
+        get_object_or_404(News,slug=get_slug)
         context['news_cat_list'] = NewsTypes.objects.all()
         context['news_det'] = News.objects.get(slug=get_slug)
         context['type2'] = cat
@@ -59,12 +60,13 @@ class NewsCatView(ListView):
     """
     model = News
     template_name = 'news_cat.html'
-    paginate_by = 2
+    paginate_by = 7
     context_object_name = 'news'
 
     def get_queryset(self, **kwargs):
         ntype = self.kwargs['newstype']
-        get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'), news_type__type=ntype)
+        # get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'), news_type__type=ntype)
+        get_object_or_404(NewsTypes,type=ntype)
         return News.objects.filter(news_type__type=ntype).order_by('-pub_date')
 
     def get_context_data(self, **kwargs):
@@ -114,15 +116,15 @@ def send_user_data_when_created_by_admin(sender, instance, **kwargs):
 
 class SubscribeView(FormView):
     form_class = NewsletterForm
-    success_url = 'newsletterregister.html'
+    success_url = '/confirm/'
 
     def form_valid(self, form):
         obj = NewsLetter.objects.filter(email=form.cleaned_data['email'])
         if obj:
-            if NewsLetter.objects.filter(email= form.cleaned_data['email'],status =True).exists():
+            if NewsLetter.objects.filter(email=form.cleaned_data['email'], status=True).exists():
                 obj = NewsLetter.objects.get(email=form.cleaned_data['email'], status=True)
                 mail_subject = 'Activate your NewsLetter Subscription'
-                message = render_to_string('alreadyactive.html',{
+                message = render_to_string('alreadyactive.html', {
                     'user': obj.email,
                 })
                 to_email = form.cleaned_data.get('email')
@@ -165,7 +167,7 @@ class SubscribeView(FormView):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-        return redirect('news:news-list')
+        return redirect('news:contact')
 
 
 class ActivateView(TemplateView):
@@ -183,7 +185,8 @@ class ActivateView(TemplateView):
         if obj is not None and account_activation_token.check_token(obj, token):
             obj.status = True
             obj.save()
-            context['message'] = 'Thank you for your email confirmation. Now you will our Newsletter every time a news is added'
+            context[
+                'message'] = 'Thank you for your email confirmation. Now you will our Newsletter every time a news is added'
 
         else:
             context['message'] = 'Activation link is invalid!'
@@ -193,7 +196,7 @@ class ActivateView(TemplateView):
 class ContactusView(FormView):
     template_name = 'contact_page.html'
     form_class = contactusForm
-    success_url = 'contactusconfirm.html'
+    success_url = '/confirm1/'
 
     def form_valid(self, form):
         obj = Contactus.objects.create(name=form.cleaned_data['name'],
@@ -228,3 +231,11 @@ class ContactusView(FormView):
 
 class my_custom_page_not_found_view(TemplateView):
     template_name = '404_page.html'
+
+
+class ConfirmView1(TemplateView):
+    template_name ='newsletterregister.html'
+
+
+class ConfirmView2(TemplateView):
+    template_name = 'contactusconfirm.html'

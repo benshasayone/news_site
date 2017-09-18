@@ -1,13 +1,15 @@
 {% extends "base4.html" %}
+
 {% load i18n %}
 {% load account %}
+
 {% block side %}
 
 {% endblock %}
 {% block content %}
 <div class="w3-row w3-padding-64">
-<div class="w3-main" style="margin-left:150px">
-<h1 class="w3-text-teal">"Confirm E-mail Address"</h1>
+    <div class="w3-main" style="margin-left:150px">
+<h1>{% trans "Confirm E-mail Address" %}</h1>
 
 {% if confirmation %}
 
@@ -27,6 +29,7 @@
 <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
 
 {% endif %}
-</div>
+    </div>
 </div>
 {% endblock %}
+

@@ -1,5 +1,6 @@
 {% extends "base4.html" %}
 
+
 {% load i18n %}
 
 {% block side %}
@@ -7,7 +8,9 @@
 {% endblock %}
 {% block content %}
 <div class="w3-row w3-padding-64">
-<div class="w3-main" style="margin-left:150px">
+    <div class="w3-main" style="margin-left:150px">
+
+
     <h1>{% trans "E-mail Addresses" %}</h1>
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
@@ -55,7 +58,8 @@
         {{ form.as_p }}
         <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
     </form>
-</div>
+
+    </div>
 </div>
 <script type="text/javascript">
 (function() {

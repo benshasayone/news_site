@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-        <title>Title</title>
+    <title>Title</title>
     {% endblock %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon"  href="/media/media/favicon.ico"/>
     <style>
         html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         html, body {
@@ -31,6 +32,7 @@
         .site-footer {
           background: orange;
         }
+
     </style>
     {% block new %}
     {% endblock %}
@@ -39,26 +41,26 @@
 
 <body>
 <div class="page-wrap">
-{% block Nav %}
-  {% include 'Navbar.html' %}
-{% endblock %}
-{% block side %}
+    {% block Nav %}
+    {% include 'Navbar.html' %}
+    {% endblock %}
+    {% block side %}
     {% include 'Sidebar.html' %}
-{% endblock %}
-<div class="w3-main" style="margin-left:250px">
-    <br>
-    <br>
-{% block content%}
+    {% endblock %}
+    <div class="w3-main" style="margin-left:250px">
+        <br>
+        <br>
+        {% block content%}
 
-{% endblock %}
+        {% endblock %}
 
-{% block extra_js %}
-{% endblock %}
+        {% block extra_js %}
+        {% endblock %}
 
-{% block comment %}
-{% endblock %}
+        {% block comment %}
+        {% endblock %}
 
-</div>
+    </div>
 </div>
 
 {% block foot %}
@@ -66,8 +68,6 @@
     {% include 'footer.html' %}
 </div>
 {% endblock %}
-
-
 
 
 <script>
@@ -93,6 +93,7 @@ function w3_close() {
     mySidebar.style.display = "none";
     overlayBg.style.display = "none";
 }
+
 </script>
 
 </body>

@@ -1,12 +1,21 @@
 {% extends "base3.html" %}
+{% block title %}
+<title>NewsLetter</title>
+{% endblock %}
 {% block Nav %}
 {% include 'Navbar1.html' %}
 {% endblock %}
 {% block side%}
+<br>
+<br>
+<br>
+<br>
 <div class="w3-main" style="margin-left:150px">
     <div class="w3-row w3-padding-80">
         <div class="w3-container">
             <div class="w3-container">
+                <br>
+                <br><br>
                 <p>{{ message }}</p><br><a href="/">Back To Home</a>
             </div>
         </div>

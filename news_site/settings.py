@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -25,8 +24,7 @@ SECRET_KEY = 'h4%)$(w^14+yh=+30*0%k2gc$0+wp*x%i57tf#q$3k*j!byi2y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['newscorner.herokuapp.com','localhost']
-
+ALLOWED_HOSTS = ['newscorner.herokuapp.com', 'localhost']
 
 # Application definition
 
@@ -86,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'news_site.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -102,7 +99,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd4akje1e74iihb',
         'USER': 'gevtrmolvvypib',
-        'PASSWORD':'96cb675b39f885aaece92696d8715c16fa487737b0d77a6e40a15291bb6d1b4d',
+        'PASSWORD': '96cb675b39f885aaece92696d8715c16fa487737b0d77a6e40a15291bb6d1b4d',
         'HOST': 'ec2-54-163-227-202.compute-1.amazonaws.com',
         'PORT': '5432',
     }
@@ -119,7 +116,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -139,7 +135,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 AUTHENTICATION_BACKENDS = (
 
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -150,20 +145,18 @@ AUTHENTICATION_BACKENDS = (
 
 )
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE =  'Asia/Kolkata'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -190,7 +183,7 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = "[NewsCorner] "
 
 LOGIN_URL = '/account/login/'
 
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL=LOGIN_URL
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
 
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/account/login/'
 
@@ -206,22 +199,16 @@ APPEND_SLASH = True
 
 SOCIALACCOUNT_ADAPTER = 'accounts.my_adapter.SocialAccountAdapter'
 
-
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 
-    # Absolute path to the directory static files should be collected to.
-    # Don't put anything in this directory yourself; store your static files
-    # in apps' "static/" subdirectories and in STATICFILES_DIRS.
-    # Example: "/var/www/example.com/static/"
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/var/www/example.com/static/"
 
-    # URL prefix for static files.
-    # Example: "http://example.com/static/", "http://static.example.com/"
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
 
-    # Additional locations of static files
-
-
-
-
-
+# Additional locations of static files
