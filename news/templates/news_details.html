@@ -1,4 +1,40 @@
 {% extends "base3.html" %}
+<style>
+    <style>
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+</style>
 {% block title %}
 <title>{{ news.title }}</title>
 {% endblock %}
@@ -45,16 +81,17 @@ $.ajax({
     height: auto;padding-bottom: 2cm;"/>
             {% endif %}
         </div>
+        <h4>
         <a href="https://www.facebook.com/sharer/sharer.php?u=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}"
-           class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Share on Facebook</a><br>
-        <a href="https://twitter.com/home?status=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on
+           class="fa fa-facebook">    Share on Facebook</a><br>
+        <a href="https://twitter.com/home?status=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}" class="fa fa-twitter">  Share on
             Twitter</a><br>
-        <a href="https://plus.google.com/share?url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}">Share on
+        <a href="https://plus.google.com/share?url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}" class="fa fa-google">   Share on
             Google+</a><br>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}&title={{ news.title }}=&source=">Share
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}&title={{ news.title }}=&source=" class="fa fa-linkedin">  Share
             on LinkedIn</a>
     </div>
-
+</h4>
 </div>
 {% endblock %}
 
