@@ -114,7 +114,7 @@ def send_user_data_when_created_by_admin(sender, instance, **kwargs):
 
 class SubscribeView(FormView):
     form_class = NewsletterForm
-    success_url = 'newsletterregister.html'
+    success_url = '/confirm/'
 
     def form_valid(self, form):
         obj = NewsLetter.objects.filter(email=form.cleaned_data['email'])
@@ -165,6 +165,7 @@ class SubscribeView(FormView):
                 mail_subject, message, to=[to_email]
             )
             email.send()
+        return redirect('news:news-list')
 
 
 class ActivateView(TemplateView):
@@ -193,7 +194,7 @@ class ActivateView(TemplateView):
 class ContactusView(FormView):
     template_name = 'contact_page.html'
     form_class = contactusForm
-    success_url = 'contactusconfirm.html'
+    success_url = '/confirm1/'
 
     def form_valid(self, form):
         obj = Contactus.objects.create(name=form.cleaned_data['name'],
@@ -228,3 +229,11 @@ class ContactusView(FormView):
 
 class my_custom_page_not_found_view(TemplateView):
     template_name = '404_page.html'
+
+
+class ConfirmView1(TemplateView):
+    template_name ='newsletterregister.html'
+
+
+class ConfirmView2(TemplateView):
+        template_name = 'contactusconfirm.html'

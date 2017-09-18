@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 
 from news.views import NewsListView, NewsDetailView, NewsCatView, NewsSearchView, NewsSearchCatView, ContactusView, \
-    SubscribeView, ActivateView
+    SubscribeView, ActivateView, ConfirmView1, ConfirmView2
 
 urlpatterns = [
     url(r'^$', NewsListView.as_view(), name='news-list'),
@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         ActivateView.as_view(), name='activate'),
     url(r'^letter/$', SubscribeView.as_view(), name='signup'),
-    url(r'^contact/$', ContactusView.as_view(), name="contactus")
+    url(r'^contact/$', ContactusView.as_view(), name="contactus"),
+    url(r'^confirm/$', ConfirmView1.as_view(), name="contact"),
+    url(r'^confirm1/$', ConfirmView2.as_view(), name="contact1"),
 
 ]
