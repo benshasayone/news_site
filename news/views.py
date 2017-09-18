@@ -165,7 +165,6 @@ class SubscribeView(FormView):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-        return redirect('news:news-list')
 
 
 class ActivateView(TemplateView):
