@@ -22,7 +22,7 @@ from news.tokens import account_activation_token
 class NewsListView(ListView):
     model = News
     template_name = 'news_list.html'
-    paginate_by = 4
+    paginate_by = 7
     context_object_name = 'news'
     queryset = News.objects.all().order_by('-pub_date')
 
@@ -60,7 +60,7 @@ class NewsCatView(ListView):
     """
     model = News
     template_name = 'news_cat.html'
-    paginate_by = 2
+    paginate_by = 7
     context_object_name = 'news'
 
     def get_queryset(self, **kwargs):

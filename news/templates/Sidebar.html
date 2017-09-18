@@ -10,6 +10,7 @@
 </style>
 
 <!-- Sidebar -->
+
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 " id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()"
        class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
@@ -20,6 +21,12 @@
     {% for newc in news_cat_list %}
     <a href="{% url 'news:news-cat-view' newc.type %}" class="w3-bar-item w3-button w3-hover-black">{{ newc.type }}</a>
     {% endfor %}
+    {% if user.is_authenticated %}
+
+    {% else %}
+        <a class="hidden-md, hidden-lg shown-sm, shown-xs w3-bar-item w3-button" href="/account/signup/"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+        <a class="hidden-md, hidden-lg shown-sm, shown-xs w3-bar-item w3-button" href="/account/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+    {% endif %}
 </nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->

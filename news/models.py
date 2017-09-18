@@ -19,6 +19,8 @@ class NewsTypes(models.Model):
         return self.type
 
 
+
+
 class News(models.Model):
     """
         Details about News
