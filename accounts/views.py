@@ -60,7 +60,7 @@ class MyPasswordResetDoneView(PasswordResetDoneView):
 
 class MyPasswordResetFromKeyView(PasswordResetFromKeyView):
     template_name = 'passwordreset.html'
-    success_url = '/account/sucess1/'
+    success_url = '/account/sucess/'
 
 
 class MyEmailView(EmailView):
