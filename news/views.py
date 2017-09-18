@@ -7,7 +7,7 @@ from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.shortcuts import redirect, get_list_or_404
+from django.shortcuts import redirect, get_list_or_404, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.encoding import force_text, force_bytes
@@ -47,6 +47,7 @@ class NewsDetailView(DetailView):
         context = super(NewsDetailView, self).get_context_data(**kwargs)
         get_slug = self.kwargs['slug']
         cat = self.kwargs['newstype']
+        get_object_or_404(News,slug=get_slug)
         context['news_cat_list'] = NewsTypes.objects.all()
         context['news_det'] = News.objects.get(slug=get_slug)
         context['type2'] = cat
@@ -64,7 +65,8 @@ class NewsCatView(ListView):
 
     def get_queryset(self, **kwargs):
         ntype = self.kwargs['newstype']
-        get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'), news_type__type=ntype)
+        # get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'), news_type__type=ntype)
+        get_object_or_404(NewsTypes,type=ntype)
         return News.objects.filter(news_type__type=ntype).order_by('-pub_date')
 
     def get_context_data(self, **kwargs):
