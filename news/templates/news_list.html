@@ -28,7 +28,6 @@ $.ajax({
 <div id="results">
     {% for new in news %}
     <div class="w3-row w3-padding-64">
-        <div class="w3-container">
             <div class="w3-container">
                 <h3><a href="{% url 'news:news-details' new.news_type.type new.slug %}"
                        class="w3-text-teal w3-hover-white">{{ new.title }}</a></h3>
@@ -37,7 +36,6 @@ $.ajax({
                 <p><i>Posted by {{ new.authors }} on {{ new.pub_date }}</i></p><a href="{% url 'news:news-details' new.news_type.type new.slug %}" class="w3-text-teal w3-hover-white">  Read
                     more</a>
             </div>
-        </div>
     </div>
     {% endfor %}
 
