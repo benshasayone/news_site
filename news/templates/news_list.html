@@ -25,7 +25,17 @@ $.ajax({
 
 $("#q").keyup(function(event){
     if(event.keyCode == 13){
-        $("#p").click();
+        var q = $('#q').val();
+        console.log(q);
+        $.ajax({
+        type: "GET",
+        url: "/search/",
+        dataType: "html",
+        data: {'q': q },
+        success: function(data) {
+                         $('#results').html(data);
+},
+});
     }
 });
 </script>
