@@ -83,11 +83,9 @@
 
                         {% if form.errors %}
                         {% for value in form.errors.values %}
-                        <div class="alert alert-warning alert-dismissable">
+                        <div class="alert alert-warning alert-dismissable fade in">
                             <a class="panel-close close" data-dismiss="alert">×</a>
-                            <i class="fa fa-coffee"></i>
-
-                            <p>{{ value }}</p>
+                            {{ value }}
                         </div>
                         {% endfor %}
                         {% endif %}
