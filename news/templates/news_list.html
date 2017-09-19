@@ -22,6 +22,12 @@ $.ajax({
 });
 });
 
+
+$("#q").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#p").click();
+    }
+});
 </script>
 {% endblock %}
 {% block content%}
