@@ -7,6 +7,7 @@
         type="text/javascript"></script>
 <script>
 $(document).ready( function() {
+var w = "{{ type1 }}";
 $('#p' ).click( function() {
 var q = $('#q').val();
 console.log(q);
@@ -14,7 +15,7 @@ $.ajax({
     type: "GET",
     url: "/search/",
     dataType: "html",
-    data: {'q': q },
+    data: {'q': q ,'w':w},
     success: function(data) {
                          $('#results').html(data);
 },
@@ -23,7 +24,6 @@ $.ajax({
 
 
 $("#q").keyup(function(event){
-    console.log("hi");
     if(event.key == "Enter"){
         var q = $('#q').val();
         console.log(q);
@@ -31,7 +31,7 @@ $("#q").keyup(function(event){
         type: "GET",
         url: "/search/",
         dataType: "html",
-        data: {'q': q },
+        data: {'q': q ,'w':w},
         success: function(data) {
                          $('#results').html(data);
 },
