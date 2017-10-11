@@ -44,42 +44,6 @@
 {% include 'Navbar1.html' %}
 {% endblock %}
 {% block content%}
-<script>
-$(document).ready( function() {
-$('#p' ).click( function() {
-var q = $('#q').val();
-console.log(q);
-$.ajax({
-    type: "GET",
-    url: "/search/",
-    dataType: "html",
-    data: {'q': q },
-    success: function(data) {
-                         $('#results').html(data);
-},
-});
-});
-
-
-$("#q").keyup(function(event){
-    console.log("hi");
-    if(event.key == "Enter"){
-        var q = $('#q').val();
-        console.log(q);
-        $.ajax({
-        type: "GET",
-        url: "/search/",
-        dataType: "html",
-        data: {'q': q },
-        success: function(data) {
-                         $('#results').html(data);
-},
-});
-    }
-});
-});
-
-</script>
 <style>
 #id_honeypot {
     display: none;
