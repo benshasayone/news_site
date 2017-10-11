@@ -46,7 +46,7 @@
 {% block content%}
 <script>
 $(document).ready( function() {
-$('#q' ).keyup( function() {
+$('#p' ).click( function() {
 var q = $('#q').val();
 console.log(q);
 $.ajax({
@@ -58,6 +58,24 @@ $.ajax({
                          $('#results').html(data);
 },
 });
+});
+
+
+$("#q").keyup(function(event){
+    console.log("hi");
+    if(event.key == "Enter"){
+        var q = $('#q').val();
+        console.log(q);
+        $.ajax({
+        type: "GET",
+        url: "/search/",
+        dataType: "html",
+        data: {'q': q },
+        success: function(data) {
+                         $('#results').html(data);
+},
+});
+    }
 });
 });
 
@@ -83,13 +101,13 @@ $.ajax({
             {% endif %}
         </div>
 
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}"
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}"
            class="fa fa-facebook">    Share on Facebook</a><br>
-        <a href="https://twitter.com/home?status=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}" class="fa fa-twitter">  Share on
+        <a href="https://twitter.com/home?status=https://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}" class="fa fa-twitter">  Share on
             Twitter</a><br>
-        <a href="https://plus.google.com/share?url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}" class="fa fa-google">   Share on
+        <a href="https://plus.google.com/share?url=https://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}" class="fa fa-google">   Share on
             Google+</a><br>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}&title={{ news.title }}=&source=" class="fa fa-linkedin">  Share
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://newscorner.herokuapp.com/{{ type2 }}/{{ news.slug }}&title={{ news.title }}=&source=" class="fa fa-linkedin">  Share
             on LinkedIn</a>
     </div>
 

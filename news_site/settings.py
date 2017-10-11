@@ -211,6 +211,6 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Example: "/var/www/example.com/static/"
 
 # URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
+# Example: "https://example.com/static/", "https://static.example.com/"
 
 # Additional locations of static files

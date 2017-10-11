@@ -20,11 +20,11 @@ $.ajax({
 },
 });
 });
-});
 
 
 $("#q").keyup(function(event){
-    if(event.keyCode == 13){
+    console.log("hi");
+    if(event.key == "Enter"){
         var q = $('#q').val();
         console.log(q);
         $.ajax({
@@ -38,6 +38,8 @@ $("#q").keyup(function(event){
 });
     }
 });
+});
+
 </script>
 {% endblock %}
 {% block content%}
