@@ -204,13 +204,22 @@ SOCIALACCOUNT_ADAPTER = 'accounts.my_adapter.SocialAccountAdapter'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
+# CELERY_BROKER_URL = 'amqp://localhost'
+#Celery - rabbit server starting stopping and status
+# sudo invoke-rc.d rabbitmq-server start
+# sudo rabbitmqctl stop
+# sudo rabbitmqctl status
+#In another tab with virtualenv activated - run this to start the celery task process command: celery -A maze worker -l info
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
 
-# URL prefix for static files.
-# Example: "https://example.com/static/", "https://static.example.com/"
+# below code for periodic mail
+#we run command: celery -A maze worker -B -l info
 
-# Additional locations of static files
+# from celery.schedules import crontab
+#
+# CELERYBEAT_SCHEDULE = {
+#     'context': {
+#         'task': 'tasks.send_mail_periodically',
+#         'schedule': crontab(minute='*/1'),
+#     }
+# }

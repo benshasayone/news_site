@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 
 class NewsTypes(models.Model):
@@ -34,6 +35,8 @@ class News(models.Model):
     slug = AutoSlugField(populate_from='title',
                          unique_with=['title'],
                          unique=True, always_update=True)
+    published = models.BooleanField(default=False)
+    subscription = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "News"
@@ -43,6 +46,15 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+    # def image_tag(self):
+    #     if self.image:
+    #         return mark_safe('<img src="/media/%s" width="150" height="150" />' % (self.image))
+    #     else:
+    #         pass
+    #
+    #
+    # image_tag.short_description = 'Image'
 
 
 class NewsLetter(models.Model):

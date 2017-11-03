@@ -15,6 +15,6 @@ urlpatterns = [
     url(r'^letter/$', SubscribeView.as_view(), name='signup'),
     url(r'^contact/$', ContactusView.as_view(), name="contactus"),
     url(r'^confirm/$', ConfirmView1.as_view(), name="contact"),
-    url(r'^confirm1/$', ConfirmView2.as_view(), name="contact1"),
+    url(r'^confirm1/$', ConfirmView2.as_view(), name="contact1")
 
 ]

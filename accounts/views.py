@@ -7,18 +7,16 @@ from accounts.forms.forms import editform
 
 
 class editprofileView(FormView):
-    template_name = 'profile_edit.html'
+    template_name = 'accounts/profile_edit.html'
     form_class = editform
     success_url = '/account/sucess/'
 
     def form_valid(self, form):
-        user = User.objects.get_by_natural_key(username=form.cleaned_data['username'])
+        user = User.objects.get_by_natural_key(username=self.request.user.username)
         user.first_name = form.cleaned_data['firstname']
         user.last_name = form.cleaned_data['lastname']
-        user.email = form.cleaned_data['email']
         user.save()
         return super(editprofileView, self).form_valid(form)
-
 
 class MySignupView(SignupView):
     template_name = 'signup.html'

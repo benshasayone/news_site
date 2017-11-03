@@ -4,10 +4,14 @@
 </head>
 <body>
 
-<h1>{{ news.title }} - {{news.pub_date}}</h1>
-<p>
-    {{ news.content }}
-</p>
+{% for new in news %}
+                <h3><a href="http://localhost:8000{% url 'news:news-details' new.news_type.type new.slug %}"
+                       >{{ new.title }}</a></h3>
+                <p>{{ new.content|truncatewords:25 }}</p>
+
+                <p><i>Posted by {{ new.authors }} on {{ new.pub_date }}</i></p><a href="http://localhost:8000{% url 'news:news-details' new.news_type.type new.slug %}" class="w3-text-teal w3-hover-white">  Read
+                    more</a>
+{% endfor %}
 
 </body>
 </html>

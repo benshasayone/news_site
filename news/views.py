@@ -24,7 +24,7 @@ class NewsListView(ListView):
     template_name = 'news_list.html'
     paginate_by = 7
     context_object_name = 'news'
-    queryset = News.objects.all().order_by('-pub_date')
+    queryset = News.objects.all().order_by('-pub_date').filter(published=True)
 
     def get_context_data(self, **kwargs):
         context = super(NewsListView, self).get_context_data(**kwargs)
@@ -67,7 +67,7 @@ class NewsCatView(ListView):
         ntype = self.kwargs['newstype']
         # get_list_or_404(News.objects.filter(news_type__type=ntype).order_by('-pub_date'), news_type__type=ntype)
         get_object_or_404(NewsTypes,type=ntype)
-        return News.objects.filter(news_type__type=ntype).order_by('-pub_date')
+        return News.objects.filter(news_type__type=ntype).order_by('-pub_date').filter(published=True)
 
     def get_context_data(self, **kwargs):
         context = super(NewsCatView, self).get_context_data(**kwargs)
@@ -87,7 +87,8 @@ class NewsSearchView(ListView):
             q = self.request.GET.get('q')
             if q is not None:
                 return News.objects.filter(
-                    Q(title__icontains=q)).order_by('-pub_date')
+                    Q(title__icontains=q)).order_by('-pub_date').filter(published=True)
+
 
 
 class NewsSearchCatView(ListView):
@@ -101,7 +102,7 @@ class NewsSearchCatView(ListView):
             w = self.request.GET.get('w')
             if q is not None:
                 return News.objects.filter(news_type__type=w).filter(
-                    Q(title__icontains=q)).order_by('-pub_date')
+                    Q(title__icontains=q)).order_by('-pub_date').filter(published=True)
 
 
 @receiver(post_save, sender=News)

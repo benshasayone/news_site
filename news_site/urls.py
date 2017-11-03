@@ -28,6 +28,10 @@ sitemaps = {
     'news': news_sitemap,
 }
 
+admin.site.site_header = ('News Corner')
+admin.site.index_title = ('News Corner')
+admin.site.site_title = ('Admin')
+
 urlpatterns = [
                   url(r'^pages/', include('django.contrib.flatpages.urls')),
                   url(r'^nc-admin/', admin.site.urls),
