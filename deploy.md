@@ -1,13 +1,10 @@
 # Deploy docs
 ### Install the EB CLI:
-```sh
-pip install awsebcli --upgrade --user
-```
+```pip install awsebcli --upgrade --user```
 ### To initialize an EB CLI project
-```sh
-eb init -i
-```
+```eb init -i```
 > Select the default AWS region: us-east-1 : US East (N. Virginia)
+>
 > Setup your credentials:
 >- aws-access-id
 >- aws-secret-key
@@ -23,17 +20,11 @@ eb init -i
 > Select a keypair: 1 (afcms-dev)
 ### To Deploy your changes to the selected eb environment:
 first commit the changes to git:
-```sh
-git commit -m "commit message"
-```
+```git commit -m "commit message"```
 Then run the following command to deploy the changes to elastic beanstalk from the project folder:
-```sh
-eb deploy
-```
+```eb deploy```
 Check the current beanstalk environment and application:
-```sh
- eb status
-```
+ ```eb status```
 ### To Revert Back to Previous Application Version In Elastic Beanstalk:
 - Open the Elastic Beanstalk console.
 - Choose an application.
